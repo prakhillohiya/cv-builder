@@ -8,9 +8,7 @@
       }
   ],
   "routes": [
-      {
-          "src": "/(.*)",
-          "dest": "build/routes/index.routes.js"
-      }
+    { "src": "/api/(.*)", "dest": "build/routes/index.routes.js" },
+    { "src": "/(.*)", "dest": "build/index.js" }
   ]
 }
