@@ -1,18 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
 import {
   Document,
-  Page,
-  PDFViewer,
   PDFDownloadLink,
+  Page
 } from "@react-pdf/renderer";
+import React from "react";
 
-import LeftSection from "../../CVTemplate/LeftSection";
-import { Box, Fab, IconButton, LinearProgress, Tooltip } from "@mui/material";
 import { Icon } from "@iconify/react";
-import { ICV } from "./CV";
+import { Box, Fab, LinearProgress, Tooltip } from "@mui/material";
+import LeftSection from "../../CVTemplate/LeftSection";
 import RightSection from "../../CVTemplate/RightSection";
 import { commonStyles } from "../../CVTemplate/Styles";
-import toast from "react-hot-toast";
+import { ICV } from "./CV";
 
 const DownloadPDF: React.FC<{ cv: ICV }> = ({ cv }) => {
   return (

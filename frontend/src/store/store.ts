@@ -1,4 +1,4 @@
-import { combineReducers, combineSlices, configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { cvSlice } from "./cv/cvSlice";
 import cvTemplateSlice from "./cvTemplate/cvTemplateSlice";
 

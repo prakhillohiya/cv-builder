@@ -1,16 +1,13 @@
+import { Icon } from "@iconify/react";
 import {
   AppBar,
-  Box,
   Container,
-  IconButton,
-  Menu,
   Toolbar,
-  Typography,
+  Typography
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import Badge from "./Badge";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Icon } from "@iconify/react";
+import Badge from "./Badge";
 
 const Navbar = () => {
   const [pathTitle, setPathTitle] = useState<string>("");

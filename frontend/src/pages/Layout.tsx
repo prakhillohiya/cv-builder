@@ -1,20 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
-import CV, { ICV, IMenuItems } from "../shared/components/CV";
-import { StoreContext } from "../shared/context/StoreProvider";
-import CVTemplate, { ICVTemplate } from "../CVTemplate/CVTemplate";
-import { useDialog } from "../shared/context/DialogProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Box, Chip, LinearProgress } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import CVTemplate from "../CVTemplate/CVTemplate";
 import {
   useCustomMutationClient,
   useCustomQueryClient,
 } from "../config/queryClient";
-import { Box, Chip, Fab, LinearProgress, Tooltip } from "@mui/material";
-import { AxiosResponse } from "axios";
-import { Icon } from "@iconify/react";
+import CV, { ICV, IMenuItems } from "../shared/components/CV";
 import Confirmation from "../shared/components/Confirmation";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store/store";
+import { useDialog } from "../shared/context/DialogProvider";
 import { updateCVTemplateState } from "../store/cvTemplate/cvTemplateSlice";
+import { RootState } from "../store/store";
 
 const menuItems: IMenuItems[] = [
   {

@@ -1,7 +1,7 @@
 import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
-import  { AxiosResponse } from "axios";
-import axios from './axios'
+import { AxiosResponse } from "axios";
 import toast from "react-hot-toast";
+import axios from './axios';
 
 interface IResponse<T = any> {
   data: T;
@@ -64,7 +64,7 @@ export const useCustomQueryClient = <T>({ queryKey,method, url,enabled }: ICusto
         }
       )
     },
-    enabled: enabled,   
+    enabled: enabled,
     refetchOnWindowFocus: false
   });
 

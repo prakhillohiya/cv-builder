@@ -1,19 +1,18 @@
-import React, {
-  createContext,
-  useState,
-  useContext,
-  ReactNode,
-  ReactElement,
-  Dispatch,
-} from "react";
-import Dialog from "@mui/material/Dialog";
+import { Icon } from "@iconify/react";
 import {
   DialogActions,
   DialogContent,
   DialogTitle,
   IconButton,
 } from "@mui/material";
-import { Icon } from "@iconify/react";
+import Dialog from "@mui/material/Dialog";
+import React, {
+  Dispatch,
+  ReactNode,
+  createContext,
+  useContext,
+  useState
+} from "react";
 
 interface IDialogContext {
   openDialog: (

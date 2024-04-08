@@ -1,12 +1,12 @@
-import React, { Fragment, lazy } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { lazy } from "react";
+import { Route, Routes } from "react-router-dom";
 import Navbar from "./Navbar";
 
 const LazyDashboard = lazy(() => import("../../pages/Dashboard"));
 const LazyEditor = lazy(() => import("../../pages/Editor"));
 const LazyLayout = lazy(() => import("../../pages/Layout"));
 
-const ProtectedRoutes = () => { 
+const ProtectedRoutes = () => {
 
 
   return (

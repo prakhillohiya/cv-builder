@@ -1,4 +1,4 @@
-import { Fragment, Suspense, lazy, useState } from "react";
+import { Suspense, lazy } from "react";
 import "./App.css";
 import { Navigate, Route, Routes } from "react-router-dom";
 import StoreProvider from "./shared/context/StoreProvider";
@@ -8,11 +8,9 @@ import { Toaster } from "react-hot-toast";
 import {
   QueryClient,
   QueryClientProvider,
-  useQuery,
 } from "@tanstack/react-query";
 import ProtectedRoutes from "./shared/components/ProtectedRoutes";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
+
 
 const LazyRegister = lazy(() => import("./pages/Register"));
 const LazyLogin = lazy(() => import("./pages/Login"));

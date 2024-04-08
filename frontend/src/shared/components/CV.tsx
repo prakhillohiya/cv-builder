@@ -1,5 +1,4 @@
-import React, { Fragment, useContext, useState } from "react";
-import { useDialog } from "../context/DialogProvider";
+import { Icon } from "@iconify/react";
 import {
   Box,
   Chip,
@@ -8,15 +7,14 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
-import { Icon } from "@iconify/react";
+import React, { Fragment, useState } from "react";
+import { z } from "zod";
 import {
   IProfile,
   ITemplate,
-  StoreContext,
   ZProfileSchema,
-  ZTemplateSchema,
+  ZTemplateSchema
 } from "../context/StoreProvider";
-import { z } from "zod";
 
 export const ZCVSchema = z.object({
   _id: z.string(),
@@ -88,7 +86,7 @@ const CV: React.FC<{
             margin: "5rem",
           }}
         >
-          {cv.map((x, i) => { 
+          {cv.map((x, i) => {
             const id = x._id;
             return (
               <Fragment key={id}>

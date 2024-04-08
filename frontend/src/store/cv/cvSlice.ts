@@ -1,9 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ICV } from "../../shared/components/CV";
 
-  
+
 const initialState: ICV[] = []
-  
+
 
 export const cvSlice = createSlice({
   name: "cv",
@@ -13,7 +13,7 @@ export const cvSlice = createSlice({
         return action.payload
     }
   },
- 
+
 });
 
 export const { updateCVState } = cvSlice.actions;

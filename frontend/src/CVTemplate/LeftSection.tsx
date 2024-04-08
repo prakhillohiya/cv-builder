@@ -1,7 +1,6 @@
-import { View, Text, Image } from "@react-pdf/renderer";
-import { leftStyles } from "./Styles";
+import { Image, Text, View } from "@react-pdf/renderer";
 import { ICV } from "../shared/components/CV";
-import { Divider } from "@mui/material";
+import { leftStyles } from "./Styles";
 
 export interface ILeftSection {
   cv: ICV;
@@ -54,9 +53,9 @@ const LeftSection: React.FC<ILeftSection> = ({ cv }) => {
 
         <View style={leftStyles.education}>
           <Text style={{ fontSize: "12px", textAlign: "left", fontFamily: "Helvetica-Bold",marginBottom: "4px" }}>Education</Text>
-          
+
           {profile.education.map((x, i) => (
-            
+
             <View style={leftStyles.education} key={i}>
               <Text style={leftStyles.education_degree}>Degree: {x.degree}</Text>
               <Text style={leftStyles.education_institution}>
@@ -66,7 +65,7 @@ const LeftSection: React.FC<ILeftSection> = ({ cv }) => {
                 Percentage: {x.percentage}
               </Text>
             </View>
-          
+
           ))}
         </View>
 

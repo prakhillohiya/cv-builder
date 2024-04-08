@@ -1,9 +1,7 @@
-import { Fragment, useContext } from "react";
-import { IProfile, StoreContext } from "../shared/context/StoreProvider";
-import { rightStyles } from "./Styles";
-import { View, Text } from "@react-pdf/renderer";
-import { ICV } from "../shared/components/CV";
+import { Text, View } from "@react-pdf/renderer";
 import dayjs from "dayjs";
+import { ICV } from "../shared/components/CV";
+import { rightStyles } from "./Styles";
 
 export interface IRightSection {
   cv: ICV;
@@ -64,7 +62,7 @@ const RightSection: React.FC<IRightSection> = ({ cv }) => {
                 </Text>
                 {/* <Text>-</Text>
               <Text style={rightStyles.experience_endDate}>
-                  
+
               </Text> */}
                 <Text style={rightStyles.experience_joiningLocation}>
                   Location: {x.joiningLocation}

@@ -1,15 +1,12 @@
+import { Icon } from "@iconify/react";
 import { Box, IconButton, TextField } from "@mui/material";
 import React from "react";
 import {
   Control,
   Controller,
-  FieldValues,
   useFieldArray,
-  useForm,
-  useFormContext,
+  useFormContext
 } from "react-hook-form";
-import { IProfile } from "../shared/context/StoreProvider";
-import { Icon } from "@iconify/react";
 import { z } from "zod";
 import { ICV } from "../shared/components/CV";
 
@@ -63,7 +60,6 @@ const Education: React.FC<{control:Control<ICV>}> = ({ control }) => {
               name={`profile.education[${index}].degree` as any}
               render={({
                 field: { onChange, onBlur, value, ref },
-                formState: { errors,isValid },
               }) => (
                 <TextField
                 inputRef={ref}

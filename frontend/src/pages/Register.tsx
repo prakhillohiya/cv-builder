@@ -51,7 +51,7 @@ const Register: React.FC = () => {
     resolver: zodResolver(ZRegisterSchema),
   });
 
-  const { mutate, isPending, error, isSuccess } =
+  const { mutate } =
     useCustomMutationClient<IRegister>({
       url: "/user/register",
       method: "post",
@@ -84,7 +84,7 @@ const Register: React.FC = () => {
             control={control}
             name="userName"
             render={({
-              field: { onChange, onBlur, value, ref },
+              field: { onChange, onBlur, value },
               formState: { errors },
             }) => (
               <TextField
@@ -105,7 +105,7 @@ const Register: React.FC = () => {
             control={control}
             name="email"
             render={({
-              field: { onChange, onBlur, value, ref },
+              field: { onChange, onBlur, value },
               formState: { errors },
             }) => (
               <TextField
@@ -126,7 +126,7 @@ const Register: React.FC = () => {
             control={control}
             name="password"
             render={({
-              field: { onChange, onBlur, value, ref },
+              field: { onChange, onBlur, value },
               formState: { errors },
             }) => (
               <TextField
@@ -147,7 +147,7 @@ const Register: React.FC = () => {
             control={control}
             name="number"
             render={({
-              field: { onChange, onBlur, value, ref },
+              field: { onChange, onBlur, value },
               formState: { errors },
             }) => (
               <TextField

@@ -1,9 +1,8 @@
-import * as React from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
-import { ChangeEvent, ReactNode, SyntheticEvent } from "react";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import * as React from "react";
+import { ReactNode, SyntheticEvent } from "react";
 
 interface ITabData {
   label: string;
@@ -15,7 +14,7 @@ interface IScrollableTabs {
 }
 
 interface ICustomTabPanel{
-  index:number 
+  index:number
   children:ReactNode
   value:number
 }

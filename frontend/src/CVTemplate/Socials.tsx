@@ -1,8 +1,7 @@
+import { Icon } from "@iconify/react";
 import { Box, IconButton, TextField } from "@mui/material";
 import React from "react";
-import { Control, Controller, FieldValues, useFieldArray, useForm, useFormContext } from "react-hook-form";
-import { IProfile } from "../shared/context/StoreProvider";
-import { Icon } from "@iconify/react";
+import { Control, Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { z } from "zod";
 import { ICV } from "../shared/components/CV";
 

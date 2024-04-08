@@ -1,14 +1,10 @@
-import React, { ReactElement, ReactNode, useContext } from "react";
 import {
   Document,
-  Page,
   PDFViewer,
-  PDFDownloadLink,
+  Page
 } from "@react-pdf/renderer";
+import React, { ReactElement } from "react";
 import { commonStyles } from "../../CVTemplate/Styles";
-import CVTemplate from "../../CVTemplate/CVTemplate";
-import { IconButton } from "@mui/material";
-import { Icon } from "@iconify/react";
 
 
 export interface IPDF{
@@ -17,7 +13,7 @@ export interface IPDF{
 }
 
 const PDF: React.FC<IPDF> = ({ children,width }) => {
-  
+
   return (
     <div style={{ flexGrow: 1 }}>
       <PDFViewer

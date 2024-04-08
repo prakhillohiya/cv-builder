@@ -1,10 +1,9 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
 import { Icon } from "@iconify/react";
 import { ListItemIcon, Menu, MenuItem } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useCustomMutationClient } from "../../config/queryClient";
 
@@ -42,9 +41,9 @@ export default function Badge() {
           onClick={(e) => handleClick(e)}
           size="small"
           sx={{ ml: 2, marginLeft: "auto", padding: "1rem" }}
-          aria-controls={open ? "account-menu" : undefined}
+          aria-controls={open() ? "account-menu" : undefined}
           aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
+          aria-expanded={open() ? "true" : undefined}
         >
           <Avatar
             sx={{

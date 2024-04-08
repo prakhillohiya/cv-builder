@@ -1,16 +1,13 @@
 import {
   Avatar,
   Box,
-  Button,
   TextField,
-  TextareaAutosize,
 } from "@mui/material";
-import React, { ChangeEvent, useContext } from "react";
-import { IProfile, StoreContext } from "../shared/context/StoreProvider";
-import { Control, Controller, FieldValues, useForm, useFormContext } from "react-hook-form";
+import React, { ChangeEvent } from "react";
+import { Control, Controller, useFormContext } from "react-hook-form";
 import { z } from "zod";
-import { ErrorMessage } from "@hookform/error-message";
 import { ICV } from "../shared/components/CV";
+
 
 export const ZBasicSchema = z.object({
   avatar: z.string().optional(),
@@ -52,8 +49,7 @@ const Basic: React.FC<{control:Control<ICV>}> = ({ control }) => {
           control={control}
           name="profile.basic.avatar"
           render={({
-            field: { onChange, onBlur, value, ref },
-            formState: { errors },
+            field: { onChange, value },
           }) => (
             <>
               <label
@@ -100,7 +96,6 @@ const Basic: React.FC<{control:Control<ICV>}> = ({ control }) => {
           name="profile.basic.name"
           render={({
             field: { onChange, onBlur, value, ref },
-            formState: { errors, isValid },
           }) => (
             <TextField
               inputRef={ref}
@@ -122,7 +117,6 @@ const Basic: React.FC<{control:Control<ICV>}> = ({ control }) => {
           name="profile.basic.profession"
           render={({
             field: { onChange, onBlur, value, ref },
-            formState: { errors, isValid },
           }) => (
             <TextField
             inputRef={ref}
@@ -144,7 +138,6 @@ const Basic: React.FC<{control:Control<ICV>}> = ({ control }) => {
           name="profile.basic.email"
           render={({
             field: { onChange, onBlur, value, ref },
-            formState: { errors, isValid },
           }) => (
             <TextField
             inputRef={ref}
@@ -166,7 +159,6 @@ const Basic: React.FC<{control:Control<ICV>}> = ({ control }) => {
           name="profile.basic.phone"
           render={({
             field: { onChange, onBlur, value, ref },
-            formState: { errors, isValid },
           }) => (
             <TextField
             inputRef={ref}
@@ -188,7 +180,6 @@ const Basic: React.FC<{control:Control<ICV>}> = ({ control }) => {
           name="profile.basic.address"
           render={({
             field: { onChange, onBlur, value, ref },
-            formState: { errors, isValid },
           }) => (
             <TextField
             inputRef={ref}
@@ -209,7 +200,6 @@ const Basic: React.FC<{control:Control<ICV>}> = ({ control }) => {
           name="profile.basic.city"
           render={({
             field: { onChange, onBlur, value, ref },
-            formState: { errors, isValid },
           }) => (
             <TextField
             inputRef={ref}
@@ -231,7 +221,6 @@ const Basic: React.FC<{control:Control<ICV>}> = ({ control }) => {
           name="profile.basic.pincode"
           render={({
             field: { onChange, onBlur, value, ref },
-            formState: { errors, isValid },
           }) => (
             <TextField
             inputRef={ref}
@@ -254,7 +243,6 @@ const Basic: React.FC<{control:Control<ICV>}> = ({ control }) => {
             name="profile.basic.intro"
             render={({
               field: { onChange, onBlur, value, ref },
-              formState: { errors, isValid },
             }) => (
               <TextField
               inputRef={ref}

@@ -1,19 +1,15 @@
 import React from "react";
+import {
+  useFormContext
+} from "react-hook-form";
+import Basic from "../../CVTemplate/Basic";
+import Education from "../../CVTemplate/Education";
 import Experience from "../../CVTemplate/Experience";
 import Projects from "../../CVTemplate/Projects";
 import { Skills } from "../../CVTemplate/Skills";
 import Socials from "../../CVTemplate/Socials";
-import ScrollableTabs from "./ScrollableTabs";
-import {
-  Control,
-  ControllerProps,
-  FieldValues,
-  useFormContext,
-} from "react-hook-form";
-import { IProfile } from "../context/StoreProvider";
-import Education from "../../CVTemplate/Education";
-import Basic from "../../CVTemplate/Basic";
 import { ICV } from "./CV";
+import ScrollableTabs from "./ScrollableTabs";
 
 
 const Form: React.FC = () => {

@@ -1,6 +1,5 @@
-import React from "react";
-import { PaymentElement } from "@stripe/react-stripe-js";
 import { Button } from "@mui/material";
+import { PaymentElement } from "@stripe/react-stripe-js";
 
 const PaymentCheckout = () => {
   return (

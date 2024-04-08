@@ -1,4 +1,5 @@
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, { ReactNode, createContext } from "react";
+import { z } from "zod";
 import { IBasic, ZBasicSchema } from "../../CVTemplate/Basic";
 import { IEducation, ZEducationSchema } from "../../CVTemplate/Education";
 import { IExperience, ZExperienceSchema } from "../../CVTemplate/Experience";
@@ -6,7 +7,6 @@ import { IProjects, ZProjectsSchema } from "../../CVTemplate/Projects";
 import { ISkills, ZSkillsSchema } from "../../CVTemplate/Skills";
 import { ISocials, ZSocialsSchema } from "../../CVTemplate/Socials";
 import { ICV } from "../components/CV";
-import { z } from "zod";
 
 export const ZProfileSchema = z.object({
   basic: ZBasicSchema,

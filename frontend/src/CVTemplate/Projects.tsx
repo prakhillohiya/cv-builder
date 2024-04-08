@@ -1,11 +1,7 @@
+import { Icon } from "@iconify/react";
 import { Box, IconButton, TextField } from "@mui/material";
 import React from "react";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { Control, Controller, FieldValues, useFieldArray, useForm, useFormContext } from "react-hook-form";
-import { IProfile } from "../shared/context/StoreProvider";
-import { Icon } from "@iconify/react";
+import { Control, Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { z } from "zod";
 import { ICV } from "../shared/components/CV";
 
@@ -29,7 +25,7 @@ export interface IProjects {
   description: string;
 }
 
-const Projects: React.FC<{control:Control<ICV>}> = ({ control }) => { 
+const Projects: React.FC<{control:Control<ICV>}> = ({ control }) => {
   const { formState,getFieldState } = useFormContext();
   const { fields, append, remove } = useFieldArray<ICV>({
     control,
@@ -169,7 +165,7 @@ const Projects: React.FC<{control:Control<ICV>}> = ({ control }) => {
                 <Icon icon="zondicons:add-outline" />
               </IconButton>
             )}
-      
+
             </div>
           </div>
         ))}

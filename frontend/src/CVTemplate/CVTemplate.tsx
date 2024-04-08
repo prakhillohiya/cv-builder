@@ -1,14 +1,14 @@
-import React, { Fragment, useContext, useState } from "react";
-import PDF from "../shared/components/PDF";
-import LeftSection from "./LeftSection";
+import React, { Fragment } from "react";
+import { z } from "zod";
 import { ICV } from "../shared/components/CV";
 import DownloadPDF from "../shared/components/DownloadPDF";
-import RightSection from "./RightSection";
+import PDF from "../shared/components/PDF";
 import {
   ZProfileSchema,
   ZTemplateSchema,
 } from "../shared/context/StoreProvider";
-import { z } from "zod";
+import LeftSection from "./LeftSection";
+import RightSection from "./RightSection";
 
 export const ZCVTemplateSchema = z.object({
   _id: z.string(),

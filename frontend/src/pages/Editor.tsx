@@ -1,37 +1,26 @@
-import { Box, Button, Paper, TextField } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
-import Form from "../shared/components/Form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Box, Button, TextField } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import React, { useContext, useEffect, useState } from "react";
 import {
-  IProfile,
-  StoreContext,
-  ZProfileSchema,
-} from "../shared/context/StoreProvider";
-import {
-  Control,
   Controller,
-  ControllerFieldState,
-  FieldError,
   FieldErrors,
-  FieldValues,
   FormProvider,
-  UseFormGetFieldState,
-  useForm,
+  useForm
 } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
 import CVTemplate from "../CVTemplate/CVTemplate";
 import {
   useCustomMutationClient,
   useCustomQueryClient,
 } from "../config/queryClient";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ICV, ZCVSchema } from "../shared/components/CV";
-import { ZBasicSchema } from "../CVTemplate/Basic";
-import { convertValueToMeridiem } from "@mui/x-date-pickers/internals/utils/time-utils";
-import { zodResolver } from "@hookform/resolvers/zod";
-import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
+import Form from "../shared/components/Form";
+import {
+  StoreContext
+} from "../shared/context/StoreProvider";
 
-import { useDialog } from "../shared/context/DialogProvider";
 
 const Editor: React.FC = () => {
   const { defaultCV } = useContext(StoreContext);
@@ -141,7 +130,6 @@ const Editor: React.FC = () => {
                   name="title"
                   render={({
                     field: { onChange, onBlur, value, ref },
-                    formState: { errors, isValid },
                   }) => (
                     <TextField
                       inputRef={ref}

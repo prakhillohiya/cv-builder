@@ -1,33 +1,24 @@
-import React, { useContext, useEffect, useState } from "react";
-import Badge from "../shared/components/Badge";
+import { Icon } from "@iconify/react";
 import {
   Box,
-  Button,
   Chip,
-  IconButton,
   LinearProgress,
-  Toolbar,
-  Tooltip,
+  Tooltip
 } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
-import { Icon } from "@iconify/react";
-import CV, { ICV, IMenuItems } from "../shared/components/CV";
 import Fab from "@mui/material/Fab";
-import { StoreContext } from "../shared/context/StoreProvider";
-import { useDialog } from "../shared/context/DialogProvider";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import CVTemplate from "../CVTemplate/CVTemplate";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 import {
   useCustomMutationClient,
   useCustomQueryClient,
 } from "../config/queryClient";
-import PaymentCheckout from "../shared/components/PaymentCheckout";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store/store";
-import { updateCVState } from "../store/cv/cvSlice";
+import CV, { ICV, IMenuItems } from "../shared/components/CV";
 import Confirmation from "../shared/components/Confirmation";
+import { useDialog } from "../shared/context/DialogProvider";
+import { updateCVState } from "../store/cv/cvSlice";
+import { RootState } from "../store/store";
 
 const menuItems: IMenuItems[] = [
   {
@@ -103,7 +94,7 @@ const Dashboard: React.FC = () => {
     e: React.MouseEvent<HTMLElement>,
     cv: ICV
   ) => {
-   
+
     setCVId(cv._id);
     await mutate(cv);
     dispatch(updateCVState(queryData?.data.data));
