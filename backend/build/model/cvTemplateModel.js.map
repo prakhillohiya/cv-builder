@@ -1,1 +1,1 @@
-{"version":3,"file":"cvTemplateModel.js","sourceRoot":"","sources":["../../src/model/cvTemplateModel.ts"],"names":[],"mappings":";;;AAAA,uCAAwC;AACxC,oEAA8E;AAEjE,QAAA,eAAe,GAAoB,IAAA,gBAAK,EAAc,YAAY,EAAC,mCAAgB,CAAC,CAAA"}
+{"version":3,"file":"cvTemplateModel.js","sourceRoot":"","sources":["../../api/model/cvTemplateModel.ts"],"names":[],"mappings":";;;AAAA,uCAAwC;AACxC,oEAA8E;AAEjE,QAAA,eAAe,GAAoB,IAAA,gBAAK,EAAc,YAAY,EAAC,mCAAgB,CAAC,CAAA"}
