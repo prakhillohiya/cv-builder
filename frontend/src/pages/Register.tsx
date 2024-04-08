@@ -11,7 +11,7 @@ export const ZRegisterSchema = z.object({
   email: z.string().email({ message: "Invalid email format" }),
   userName: z
     .string()
-    .min(6, { message: "User Name must be at least 6 characters long" }),
+    .min(5, { message: "User Name must be at least 5 characters long" }),
   password: z
     .string()
     .min(8, {
