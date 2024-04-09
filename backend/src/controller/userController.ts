@@ -1,10 +1,10 @@
-import { Request, Response } from "express";
-import { userModel } from "../model/userModel";
 import bcrypt from "bcrypt";
-import { createToken } from "../utils/jwt";
-import { IUser } from "../schema/userSchema";
-import { ICV } from "../schema/cv/cvSchema";
+import { Request, Response } from "express";
 import { IExtendedRequest } from "../interface";
+import { userModel } from "../model/userModel";
+import { ICV } from "../schema/cv/cvSchema";
+import { IUser } from "../schema/userSchema";
+import { createToken } from "../utils/jwt";
 
 export const createUser = async (
   req: Request<IExtendedRequest<IUser>>,
@@ -77,7 +77,7 @@ export const login = async (
       number: existingUser.number,
     });
 
-    res.cookie("jwt", token, { httpOnly: true, maxAge: 3600000 });
+    res.cookie("jwt", token, { httpOnly: true, maxAge: 3600000,secure:true,sameSite: true });
 
     return res.status(200).send({
       message: "Login Successful",
