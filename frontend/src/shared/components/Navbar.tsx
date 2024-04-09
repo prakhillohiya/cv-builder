@@ -31,7 +31,7 @@ const Navbar = () => {
         }}
       >
         <Toolbar disableGutters>
-          <Link to={"/app/dashboard"} className="flex">
+          <Link to={"/app/dashboard"} className="flex" target="_self">
           <Icon icon="ph:read-cv-logo-light" width="50" height="50" />
             <Typography
               variant="h6"
