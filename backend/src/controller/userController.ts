@@ -102,6 +102,7 @@ export const logout = async (
 ) => {
   try {
     await res.clearCookie("jwt");
+    await res.cookie("jwt", "", { httpOnly: true, maxAge: 3600000,secure:true,sameSite: "none" });
 
     return res.status(200).send({
       message: "Logout Successful",
