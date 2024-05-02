@@ -1,15 +1,15 @@
-import { Suspense, lazy } from "react";
-import "./App.css";
-import { Navigate, Route, Routes } from "react-router-dom";
-import StoreProvider from "./shared/context/StoreProvider";
 import { Box, LinearProgress, ThemeProvider, createTheme } from "@mui/material";
-import { DialogProvider } from "./shared/context/DialogProvider";
-import { Toaster } from "react-hot-toast";
 import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { Suspense, lazy } from "react";
+import { Toaster } from "react-hot-toast";
+import { Navigate, Route, Routes } from "react-router-dom";
+import "./App.css";
 import ProtectedRoutes from "./shared/components/ProtectedRoutes";
+import { DialogProvider } from "./shared/context/DialogProvider";
+import StoreProvider from "./shared/context/StoreProvider";
 
 
 const LazyRegister = lazy(() => import("./pages/Register"));

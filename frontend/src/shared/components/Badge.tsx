@@ -31,7 +31,7 @@ export default function Badge() {
   };
 
   const handleLogoutClick = () => {
-    mutate({logout:true});
+    mutate({ logout: true });
   };
 
   return (
@@ -41,9 +41,7 @@ export default function Badge() {
           onClick={(e) => handleClick(e)}
           size="small"
           sx={{ ml: 2, marginLeft: "auto", padding: "1rem" }}
-          aria-controls={open() ? "account-menu" : undefined}
           aria-haspopup="true"
-          aria-expanded={open() ? "true" : undefined}
         >
           <Avatar
             sx={{
