@@ -26,7 +26,6 @@
     "axios": "^1.6.7",
     "beautiful-react-hooks": "^5.0.1",
     "dayjs": "^1.11.10",
-    "express": "^4.19.2",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "react": "^18.2.0",
@@ -40,8 +39,6 @@
   },
   "devDependencies": {
     "@iconify/react": "^4.1.1",
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.12.10",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
