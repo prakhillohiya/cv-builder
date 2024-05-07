@@ -20,21 +20,12 @@ const Rocket: React.FC = () => {
     data: mutateData,
     isSuccess: mutateSuccess,
   } = useCustomMutationClient({
-    url: `https://api.render.com/v1/services/${
-      import.meta.env.VITE_RENDER_SERVICE_ID
-    }/restart`,
-    method: "post",
+    url: "https://proxy-server-red.vercel.app/",
+    method: "get",
     mutationKey: "restartServer",
     successCallback: () => {
       setError(null);
       navigate("/app/dashboard");
-    },
-    headers: {
-      Authorization: `Bearer ${import.meta.env.VITE_RENDER_API_KEY}`,
-      // "Access-Control-Allow-Origin": "*",
-      // " Access-Control-Allow-Credentials": "true",
-      // 'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
-      // "mode":"no-cors"
     },
   });
 

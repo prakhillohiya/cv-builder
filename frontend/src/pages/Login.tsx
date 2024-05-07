@@ -1,13 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, LinearProgress, TextField } from "@mui/material";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
-import {
-  useCustomMutationClient
-} from "../config/queryClient";
+import { useCustomMutationClient } from "../config/queryClient";
 import Logo from "../shared/components/Logo";
+import { StoreContext } from "../shared/context/StoreProvider";
 
 export const ZLoginSchema = z.object({
   userNameOrEmail: z.string(),
@@ -29,6 +28,8 @@ const Login: React.FC = () => {
     resolver: zodResolver(ZLoginSchema),
   });
 
+  const { setError } = useContext(StoreContext);
+
   const { mutate, isPending, error, isSuccess } =
     useCustomMutationClient<ILogin>({
       url: "/user/login",
@@ -38,6 +39,12 @@ const Login: React.FC = () => {
         navigate("/app/dashboard");
       },
     });
+
+  useEffect(() => {
+    if (error) {
+      setError(error);
+    }
+  }, [error]);
 
   if (isPending) {
     return (

@@ -87,28 +87,6 @@ const Dashboard: React.FC = () => {
     }
   }, [queryError]);
 
-
-
-  // const callAppwrite = async () => {
-  //   const response = await axios.get(
-  //     "https://nodejs-serverless-function-express-a51y3aofk.vercel.app/api/hello",
-  //     {
-  //       headers: {
-  //         "Access-Control-Allow-Credentials": "true",
-  //         "Access-Control-Allow-Origin": "*",
-  //         "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-  //         "Access-Control-Allow-Headers":
-  //           "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
-  //       },
-  //     }
-  //   );
-  //   return response;
-  // };
-
-  // useEffect(() => {
-  //   console.log(callAppwrite());
-  // }, []);
-
   if (queryLoading || !querySuccess) {
     return (
       <Box sx={{ width: "100%" }}>
