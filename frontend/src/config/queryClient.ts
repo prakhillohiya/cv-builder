@@ -9,24 +9,27 @@ interface IResponse<T = any> {
 }
 
 export interface ICustomQuery {
-  queryKey:string
+  queryKey: string
   url: string;
   method: string;
-  enabled:boolean
+  enabled: boolean
+  headers?: { [key: string]: string }
 }
 
 export interface IMutationQuery {
-  mutationKey:string
+  mutationKey: string
   url: string;
   method: string;
-  successCallback:()=>void
+  successCallback: () => void
+  headers?: { [key: string]: string }
 }
 
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 0,
-      refetchOnWindowFocus:false,
+      refetchOnWindowFocus: false,
+
     },
     mutations: {},
   },
@@ -47,15 +50,16 @@ export const queryClient = new QueryClient({
 
 // export const QueryDevtools = () => <ReactQueryDevtools />;
 
-export const useCustomQueryClient = <T>({ queryKey,method, url,enabled }: ICustomQuery) => {
+export const useCustomQueryClient = <T>({ queryKey, method, url, enabled, headers }: ICustomQuery) => {
   const query = useQuery<AxiosResponse<IResponse<T>>, Error>({
     queryKey: [queryKey],
-    queryFn: ()=> {
+    queryFn: () => {
       return toast.promise(
         axios<IResponse>({
           method: `${method}`,
-          url: `${import.meta.env.VITE_BASE_URI}${url}`,
-          withCredentials:true,
+          url: `${url}`,
+          withCredentials: true,
+          headers: headers
         }),
         {
           error: (err) => err.message,
@@ -65,23 +69,24 @@ export const useCustomQueryClient = <T>({ queryKey,method, url,enabled }: ICusto
       )
     },
     enabled: enabled,
-    refetchOnWindowFocus: false
-  });
+    refetchOnWindowFocus: false,
 
+  });
 
   return query;
 };
 
-export const useCustomMutationClient = <T>({ mutationKey,method, url,successCallback }: IMutationQuery) => {
+export const useCustomMutationClient = <T>({ mutationKey, method, url, successCallback, headers }: IMutationQuery) => {
   const mutation = useMutation({
-    mutationKey:[mutationKey],
-    mutationFn: (body:T) => {
+    mutationKey: [mutationKey],
+    mutationFn: (body: T) => {
       return toast.promise(
         axios<IResponse>({
           method: `${method}`,
-          url: `${import.meta.env.VITE_BASE_URI}${url}`,
+          url: `${url}`,
           data: body,
-          withCredentials:true
+          withCredentials: true,
+          headers: headers
         }),
         {
           error: (err) => err.response.data.message,
@@ -90,7 +95,9 @@ export const useCustomMutationClient = <T>({ mutationKey,method, url,successCall
         }
       );
     },
-    onSuccess:successCallback
+
+    onSuccess: successCallback,
+
   });
 
   return mutation;

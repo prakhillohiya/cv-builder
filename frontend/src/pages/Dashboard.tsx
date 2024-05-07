@@ -1,12 +1,7 @@
 import { Icon } from "@iconify/react";
-import {
-  Box,
-  Chip,
-  LinearProgress,
-  Tooltip
-} from "@mui/material";
+import { Box, Chip, LinearProgress, Tooltip } from "@mui/material";
 import Fab from "@mui/material/Fab";
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import CVTemplate from "../CVTemplate/CVTemplate";
@@ -19,6 +14,8 @@ import Confirmation from "../shared/components/Confirmation";
 import { useDialog } from "../shared/context/DialogProvider";
 import { updateCVState } from "../store/cv/cvSlice";
 import { RootState } from "../store/store";
+import { StoreContext } from "../shared/context/StoreProvider";
+import axios from "axios";
 
 const menuItems: IMenuItems[] = [
   {
@@ -50,7 +47,7 @@ const Dashboard: React.FC = () => {
     isSuccess: querySuccess,
     refetch,
   } = useCustomQueryClient<ICV[]>({
-    url: "/cv/fetchAll",
+    url: `${import.meta.env.VITE_BASE_URI}/cv/fetchAll`,
     method: "get",
     queryKey: "getAllUserCV",
     enabled: true,
@@ -63,24 +60,54 @@ const Dashboard: React.FC = () => {
     data: mutateData,
     isSuccess: mutateSuccess,
   } = useCustomMutationClient<ICV>({
-    url: `/cv/delete/${cvId}`,
+    url: `${import.meta.env.VITE_BASE_URI}/cv/delete/${cvId}`,
     method: "delete",
     mutationKey: "deleteUserCV",
     successCallback: () => {
-      refetch()
+      refetch();
     },
   });
 
   const cv = useSelector((state: RootState) => state.cv);
   const dispatch = useDispatch();
 
-  const { openDialog,setIsOpen } = useDialog();
+  const { openDialog, setIsOpen } = useDialog();
+
+  const { setError } = useContext(StoreContext);
 
   useEffect(() => {
     if (!queryLoading && querySuccess) {
       dispatch(updateCVState(queryData.data.data));
     }
   }, [queryLoading, querySuccess, queryData]);
+
+  useEffect(() => {
+    if (queryError) {
+      setError(queryError);
+    }
+  }, [queryError]);
+
+
+
+  // const callAppwrite = async () => {
+  //   const response = await axios.get(
+  //     "https://nodejs-serverless-function-express-a51y3aofk.vercel.app/api/hello",
+  //     {
+  //       headers: {
+  //         "Access-Control-Allow-Credentials": "true",
+  //         "Access-Control-Allow-Origin": "*",
+  //         "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+  //         "Access-Control-Allow-Headers":
+  //           "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+  //       },
+  //     }
+  //   );
+  //   return response;
+  // };
+
+  // useEffect(() => {
+  //   console.log(callAppwrite());
+  // }, []);
 
   if (queryLoading || !querySuccess) {
     return (
@@ -94,11 +121,10 @@ const Dashboard: React.FC = () => {
     e: React.MouseEvent<HTMLElement>,
     cv: ICV
   ) => {
-
     setCVId(cv._id);
     await mutate(cv);
     dispatch(updateCVState(queryData?.data.data));
-    setIsOpen(false)
+    setIsOpen(false);
   };
 
   const parentMenuItemClick = (

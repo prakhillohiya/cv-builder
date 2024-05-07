@@ -1,4 +1,4 @@
-import React, { ReactNode, createContext } from "react";
+import React, { Dispatch, ReactNode, createContext, useState } from "react";
 import { z } from "zod";
 import { IBasic, ZBasicSchema } from "../../CVTemplate/Basic";
 import { IEducation, ZEducationSchema } from "../../CVTemplate/Education";
@@ -7,6 +7,8 @@ import { IProjects, ZProjectsSchema } from "../../CVTemplate/Projects";
 import { ISkills, ZSkillsSchema } from "../../CVTemplate/Skills";
 import { ISocials, ZSocialsSchema } from "../../CVTemplate/Socials";
 import { ICV } from "../components/CV";
+import { AxiosError } from "axios";
+import Rocket from "../components/Rocket";
 
 export const ZProfileSchema = z.object({
   basic: ZBasicSchema,
@@ -48,6 +50,7 @@ export interface ITemplate {
 
 interface IStoreProvider {
   defaultCV: ICV;
+  setError: Dispatch<React.SetStateAction<Error | null>>;
 }
 
 export const StoreContext = createContext<IStoreProvider>({
@@ -108,9 +111,12 @@ export const StoreContext = createContext<IStoreProvider>({
     },
     title: "",
   },
+  setError: () => {},
 });
 
 const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [error, setError] = useState<Error | null>(null);
+
   const defaultCV = {
     _id: "",
     profile: {
@@ -170,8 +176,8 @@ const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   return (
-    <StoreContext.Provider value={{ defaultCV }}>
-      {children}
+    <StoreContext.Provider value={{ defaultCV, setError }}>
+      {error ? <Rocket /> : children}
     </StoreContext.Provider>
   );
 };
