@@ -39,7 +39,6 @@ const Rocket: React.FC = () => {
     method: "get",
     mutationKey: "restartServer",
     successCallback: () => {
-      setError(null);
       refetch();
     },
     retryDelay: 5000,
@@ -52,6 +51,7 @@ const Rocket: React.FC = () => {
 
   useEffect(() => {
     if (querySuccess && !queryLoading) {
+      setError(null);
       navigate("/app/dashboard");
     }
   }, [querySuccess]);
