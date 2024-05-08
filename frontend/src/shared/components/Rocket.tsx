@@ -43,6 +43,7 @@ const Rocket: React.FC = () => {
     },
     retryDelay: 5000,
     retry: true,
+    withCredentials: false,
   });
 
   useEffect(() => {
