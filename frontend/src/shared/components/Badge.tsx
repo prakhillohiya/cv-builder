@@ -31,7 +31,7 @@ export default function Badge() {
   };
 
   const handleLogoutClick = () => {
-    mutate({ logout: true });
+    mutate(null);
   };
 
   return (

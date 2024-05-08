@@ -82,7 +82,7 @@ const Dashboard: React.FC = () => {
   }, [queryLoading, querySuccess, queryData]);
 
   useEffect(() => {
-    if (queryError) {
+    if (queryError && !queryLoading) {
       setError(queryError);
     }
   }, [queryError]);

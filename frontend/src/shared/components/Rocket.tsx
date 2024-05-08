@@ -20,17 +20,19 @@ const Rocket: React.FC = () => {
     data: mutateData,
     isSuccess: mutateSuccess,
   } = useCustomMutationClient({
-    url: "https://proxy-server-red.vercel.app/",
+    url: "https://the-proxy-server.vercel.app",
     method: "get",
     mutationKey: "restartServer",
     successCallback: () => {
       setError(null);
       navigate("/app/dashboard");
     },
+    retryDelay: 10000,
+    retry: true,
   });
 
   useEffect(() => {
-    mutate("");
+    mutate(null);
   }, []);
 
   return (

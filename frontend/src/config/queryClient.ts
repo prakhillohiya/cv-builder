@@ -14,6 +14,8 @@ export interface ICustomQuery {
   method: string;
   enabled: boolean
   headers?: { [key: string]: string }
+  retry?: boolean
+  retryDelay?: number
 }
 
 export interface IMutationQuery {
@@ -22,6 +24,8 @@ export interface IMutationQuery {
   method: string;
   successCallback: () => void
   headers?: { [key: string]: string }
+  retry?: boolean
+  retryDelay?: number
 }
 
 export const queryClient = new QueryClient({
@@ -50,7 +54,7 @@ export const queryClient = new QueryClient({
 
 // export const QueryDevtools = () => <ReactQueryDevtools />;
 
-export const useCustomQueryClient = <T>({ queryKey, method, url, enabled, headers }: ICustomQuery) => {
+export const useCustomQueryClient = <T>({ queryKey, method, url, enabled, headers,retry,retryDelay }: ICustomQuery) => {
   const query = useQuery<AxiosResponse<IResponse<T>>, Error>({
     queryKey: [queryKey],
     queryFn: () => {
@@ -58,7 +62,7 @@ export const useCustomQueryClient = <T>({ queryKey, method, url, enabled, header
         axios<IResponse>({
           method: `${method}`,
           url: `${url}`,
-          withCredentials: true,
+          // withCredentials: true,
           headers: headers
         }),
         {
@@ -70,13 +74,14 @@ export const useCustomQueryClient = <T>({ queryKey, method, url, enabled, header
     },
     enabled: enabled,
     refetchOnWindowFocus: false,
-
+    retry: retry ?? 2,
+    retryDelay: retryDelay ?? 3000
   });
 
   return query;
 };
 
-export const useCustomMutationClient = <T>({ mutationKey, method, url, successCallback, headers }: IMutationQuery) => {
+export const useCustomMutationClient = <T>({ mutationKey, method, url, successCallback, headers, retry, retryDelay }: IMutationQuery) => {
   const mutation = useMutation({
     mutationKey: [mutationKey],
     mutationFn: (body: T) => {
@@ -85,7 +90,7 @@ export const useCustomMutationClient = <T>({ mutationKey, method, url, successCa
           method: `${method}`,
           url: `${url}`,
           data: body,
-          withCredentials: true,
+          // withCredentials: true,
           headers: headers
         }),
         {
@@ -95,7 +100,8 @@ export const useCustomMutationClient = <T>({ mutationKey, method, url, successCa
         }
       );
     },
-
+    retry: retry ?? 2,
+    retryDelay: retryDelay ?? 3000,
     onSuccess: successCallback,
 
   });
