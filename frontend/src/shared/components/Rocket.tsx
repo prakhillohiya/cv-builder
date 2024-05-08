@@ -14,6 +14,21 @@ const Rocket: React.FC = () => {
   const { setError } = useContext(StoreContext);
 
   const {
+    isLoading: queryLoading,
+    error: queryError,
+    data: queryData,
+    isSuccess: querySuccess,
+    refetch,
+  } = useCustomQueryClient({
+    url: `${import.meta.env.VITE_BASE_URI}/check`,
+    method: "get",
+    queryKey: "checkAPI",
+    enabled: false,
+    retry: true,
+    retryDelay: 10000,
+  });
+
+  const {
     mutate,
     isPending: mutatePending,
     error: mutateError,
@@ -25,15 +40,21 @@ const Rocket: React.FC = () => {
     mutationKey: "restartServer",
     successCallback: () => {
       setError(null);
-      navigate("/app/dashboard");
+      refetch();
     },
-    retryDelay: 10000,
+    retryDelay: 5000,
     retry: true,
   });
 
   useEffect(() => {
     mutate(null);
   }, []);
+
+  useEffect(() => {
+    if (querySuccess && !queryLoading) {
+      navigate("/app/dashboard");
+    }
+  }, [querySuccess]);
 
   return (
     <div>
