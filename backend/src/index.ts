@@ -11,7 +11,7 @@ import { IncomingHttpHeaders } from "http";
 const app = express();
 app.use(
   cors({
-    origin: "https://the-cv-builder.vercel.app",
+    origin: process.env.ALLOWED_ORIGINS?.split(" "),
     credentials: true,
   })
 );
