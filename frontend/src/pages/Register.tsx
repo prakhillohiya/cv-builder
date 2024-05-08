@@ -1,11 +1,12 @@
 import { Box, Button, Divider, TextField } from "@mui/material";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useCustomMutationClient } from "../config/queryClient";
 import { Link, useNavigate } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Logo from "../shared/components/Logo";
+import { StoreContext } from "../shared/context/StoreProvider";
 
 export const ZRegisterSchema = z.object({
   email: z.string().email({ message: "Invalid email format" }),
@@ -51,15 +52,26 @@ const Register: React.FC = () => {
     resolver: zodResolver(ZRegisterSchema),
   });
 
-  const { mutate } =
-    useCustomMutationClient<IRegister>({
-      url: "/user/register",
-      method: "post",
-      mutationKey: "postRegister",
-      successCallback: () => {
-        navigate("/login");
-      },
-    });
+  const {
+    mutate,
+    isPending: mutatePending,
+    error: mutateError,
+  } = useCustomMutationClient<IRegister>({
+    url: "/user/register",
+    method: "post",
+    mutationKey: "postRegister",
+    successCallback: () => {
+      navigate("/login");
+    },
+  });
+
+  const { setError } = useContext(StoreContext);
+
+  useEffect(() => {
+    if (mutateError && !mutatePending) {
+      setError(mutateError);
+    }
+  }, [mutateError]);
 
   const handleSignupClick = (formData: IRegister) => {
     mutate(formData);
@@ -73,8 +85,8 @@ const Register: React.FC = () => {
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#eaeaea",
-        flexDirection:"column",
-        gap:"1rem"
+        flexDirection: "column",
+        gap: "1rem",
       }}
     >
       <Logo />

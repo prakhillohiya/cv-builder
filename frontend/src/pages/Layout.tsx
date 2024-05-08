@@ -1,5 +1,5 @@
 import { Box, Chip, LinearProgress } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CVTemplate from "../CVTemplate/CVTemplate";
@@ -12,6 +12,7 @@ import Confirmation from "../shared/components/Confirmation";
 import { useDialog } from "../shared/context/DialogProvider";
 import { updateCVTemplateState } from "../store/cvTemplate/cvTemplateSlice";
 import { RootState } from "../store/store";
+import { StoreContext } from "../shared/context/StoreProvider";
 
 const menuItems: IMenuItems[] = [
   {
@@ -68,11 +69,19 @@ const Layout: React.FC = () => {
 
   const { openDialog, setIsOpen } = useDialog();
 
+  const { setError } = useContext(StoreContext);
+
   useEffect(() => {
     if (!queryLoading && querySuccess) {
       dispatch(updateCVTemplateState(queryData.data.data));
     }
   }, [queryLoading, querySuccess, queryData]);
+
+  useEffect(() => {
+    if (queryError && !queryLoading) {
+      setError(queryError);
+    }
+  }, [queryError]);
 
   if (queryLoading || !querySuccess) {
     return (

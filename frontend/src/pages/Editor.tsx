@@ -6,7 +6,7 @@ import {
   Controller,
   FieldErrors,
   FormProvider,
-  useForm
+  useForm,
 } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -17,10 +17,7 @@ import {
 } from "../config/queryClient";
 import { ICV, ZCVSchema } from "../shared/components/CV";
 import Form from "../shared/components/Form";
-import {
-  StoreContext
-} from "../shared/context/StoreProvider";
-
+import { StoreContext } from "../shared/context/StoreProvider";
 
 const Editor: React.FC = () => {
   const { defaultCV } = useContext(StoreContext);
@@ -29,6 +26,8 @@ const Editor: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { fetchUrl, postUrl, query } = location.state || {};
+
+  const { setError } = useContext(StoreContext);
 
   const {
     isLoading: queryLoading,
@@ -88,6 +87,12 @@ const Editor: React.FC = () => {
   }, [queryLoading, querySuccess, queryData, formMethods]);
 
   useEffect(() => {
+    if (queryError && !queryLoading) {
+      setError(queryError);
+    }
+  }, [queryError]);
+
+  useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       if (
         formMethods.formState.isDirty &&
@@ -128,9 +133,7 @@ const Editor: React.FC = () => {
                 <Controller
                   control={formMethods.control}
                   name="title"
-                  render={({
-                    field: { onChange, onBlur, value, ref },
-                  }) => (
+                  render={({ field: { onChange, onBlur, value, ref } }) => (
                     <TextField
                       inputRef={ref}
                       onChange={onChange}
