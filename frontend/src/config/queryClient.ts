@@ -62,7 +62,7 @@ export const useCustomQueryClient = <T>({ queryKey, method, url, enabled, header
         axios<IResponse>({
           method: `${method}`,
           url: `${url}`,
-          // withCredentials: true,
+          withCredentials: true,
           headers: headers
         }),
         {
@@ -90,7 +90,7 @@ export const useCustomMutationClient = <T>({ mutationKey, method, url, successCa
           method: `${method}`,
           url: `${url}`,
           data: body,
-          // withCredentials: true,
+          withCredentials: true,
           headers: headers
         }),
         {
