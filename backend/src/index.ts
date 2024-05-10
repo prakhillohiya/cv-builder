@@ -18,6 +18,20 @@ app.use(
 app.use(cookieParser());
 app.use(express.json({ limit: "50mb" }));
 
+routes(app);
+
+
+const initializeApp = async () => {
+  try {
+    await connectDB();
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
+
+initializeApp();
+
 // app.use((req, res, next) => {
 //   const startTime = Date.now();
 
@@ -58,12 +72,15 @@ app.use(express.json({ limit: "50mb" }));
 //   next();
 // });
 
-app.listen(process.env.PORT, async () => {
-  try {
-    await connectDB();
-    routes(app);
-    console.log(`Server Running on ${process.env.PORT}`);
-  } catch (error) {
-    console.log(error);
-  }
-});
+// app.listen(process.env.PORT, async () => {
+//   try {
+//     await connectDB();
+//     routes(app);
+//     console.log(`Server Running on ${process.env.PORT}`);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
+
+export default app;

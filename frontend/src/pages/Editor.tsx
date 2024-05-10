@@ -67,11 +67,11 @@ const Editor: React.FC = () => {
     }
   }, [fetchUrl, postUrl, query]);
 
-  useEffect(() => {
-    if (queryData?.data.data) {
-      setCV(queryData?.data.data);
-    }
-  }, [queryData]);
+  // useEffect(() => {
+  //   if (queryData?.data.data) {
+  //     setCV(queryData?.data.data);
+  //   }
+  // }, [queryData]);
 
   useEffect(() => {
     if (mutateData?.data.data) {

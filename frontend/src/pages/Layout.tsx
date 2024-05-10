@@ -77,11 +77,11 @@ const Layout: React.FC = () => {
     }
   }, [queryLoading, querySuccess, queryData]);
 
-  useEffect(() => {
-    if (queryError && !queryLoading) {
-      setError(queryError);
-    }
-  }, [queryError]);
+  // useEffect(() => {
+  //   if (queryError && !queryLoading) {
+  //     setError(queryError);
+  //   }
+  // }, [queryError]);
 
   if (queryLoading || !querySuccess) {
     return (

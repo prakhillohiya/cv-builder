@@ -40,11 +40,11 @@ const Login: React.FC = () => {
       },
     });
 
-  useEffect(() => {
-    if (error) {
-      setError(error);
-    }
-  }, [error]);
+  // useEffect(() => {
+  //   if (error) {
+  //     setError(error);
+  //   }
+  // }, [error]);
 
   if (isPending) {
     return (

@@ -67,11 +67,11 @@ const Register: React.FC = () => {
 
   const { setError } = useContext(StoreContext);
 
-  useEffect(() => {
-    if (mutateError && !mutatePending) {
-      setError(mutateError);
-    }
-  }, [mutateError]);
+  // useEffect(() => {
+  //   if (mutateError && !mutatePending) {
+  //     setError(mutateError);
+  //   }
+  // }, [mutateError]);
 
   const handleSignupClick = (formData: IRegister) => {
     mutate(formData);
