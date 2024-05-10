@@ -9,6 +9,14 @@ import { logger } from "./middleware/logger";
 import { IncomingHttpHeaders } from "http";
 
 const app = express();
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://the-cv-builder.vercel.app");
+  res.header("Access-Control-Allow-Headers", "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
 app.use(
   cors({
     origin: process.env.ALLOWED_ORIGINS?.split(" "),
