@@ -29,20 +29,20 @@ app.use(express.json({ limit: "50mb" }));
 
 
 //SERVERLESS
-// routes(app);
+routes(app);
 
-// const initializeApp = async () => {
-//   try {
-//     await connectDB();
-//   } catch (error) {
-//     console.log(error);
-//     process.exit(1);
-//   }
-// };
+const initializeApp = async () => {
+  try {
+    await connectDB();
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
 
-// initializeApp();
+initializeApp();
 
-// export default app;
+export default app;
 //SERVERLESS
 
 // app.use((req, res, next) => {
