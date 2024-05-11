@@ -26,7 +26,7 @@ const CustomTabPanel:React.FC<ICustomTabPanel>=({ index, children, value }) =>{
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      className="h-[calc(100vh - 244px)] overflow-auto"
+      className="h-[calc(100vh-244px)] overflow-auto"
 
     >
       {value === index && <Box>{children}</Box>}
