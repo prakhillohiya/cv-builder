@@ -13,7 +13,7 @@ const LeftSection: React.FC<ILeftSection> = ({ cv }) => {
     <View
       style={{
         ...leftStyles.section,
-        backgroundColor: `#${template.backgroundColor}`,
+        backgroundColor: `${template.backgroundColor}`,
       }}
     >
       <View style={leftStyles.container}>

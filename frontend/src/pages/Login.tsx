@@ -1,8 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, Button, LinearProgress, TextField } from "@mui/material";
+import { Box, Button, Divider, LinearProgress, TextField } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useCustomMutationClient } from "../config/queryClient";
 import Logo from "../shared/components/Logo";
@@ -130,6 +130,19 @@ const Login: React.FC = () => {
           >
             Login
           </Button>
+
+          <Divider sx={{ marginTop: "2rem", marginBottom: "2rem" }}>
+            Don't have an account?
+          </Divider>
+
+          <div className="flex justify-center">
+            <Link to={"/register"}>
+              <Button variant="contained" color="success">
+              Register
+              </Button>
+            </Link>
+          </div>
+
         </div>
       </form>
     </Box>
