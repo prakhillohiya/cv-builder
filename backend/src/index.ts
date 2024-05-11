@@ -87,14 +87,14 @@ export default app;
 
 
 //SERVER
-app.listen(process.env.PORT, async () => {
-  try {
-    await connectDB();
-    routes(app);
-    console.log(`Server Running on ${process.env.PORT}`);
-  } catch (error) {
-    console.log(error);
-  }
-});
+// app.listen(process.env.PORT, async () => {
+//   try {
+//     await connectDB();
+//     routes(app);
+//     console.log(`Server Running on ${process.env.PORT}`);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 //SERVER
 
