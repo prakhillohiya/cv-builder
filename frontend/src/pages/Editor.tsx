@@ -83,14 +83,16 @@ const Editor: React.FC = () => {
     if (!queryLoading && querySuccess && fetchUrl.length) {
       const cv = queryData.data.data;
       formMethods.reset({ ...cv, profile: cv.profile });
+
+      setCV(cv)
     }
   }, [queryLoading, querySuccess, queryData, formMethods]);
 
-  useEffect(() => {
-    if (queryError && !queryLoading) {
-      setError(queryError);
-    }
-  }, [queryError]);
+  // useEffect(() => {
+  //   if (queryError && !queryLoading) {
+  //     setError(queryError);
+  //   }
+  // }, [queryError]);
 
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
