@@ -11,12 +11,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.connectDB = void 0;
 const mongoose_1 = require("mongoose");
+//SERVERLESS
+// export const connectDB = async () => {
+//   try {
+//     await connect(process.env.MONGO_URL!, {
+//       maxPoolSize: 10,
+//     });
+//     console.log("MongoDB connected");
+//   } catch (error) {
+//     console.log(error);
+//     throw error;
+//   }
+// };
+//SERVERLESS
+//SERVER
 const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield (0, mongoose_1.connect)(process.env.MONGO_URL, {
-            maxPoolSize: 10,
-        });
-        console.log("MongoDB connected");
+        yield (0, mongoose_1.connect)(process.env.MONGO_URL);
     }
     catch (error) {
         console.log(error);
@@ -24,4 +35,5 @@ const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.connectDB = connectDB;
+//SERVER
 //# sourceMappingURL=db.js.map
