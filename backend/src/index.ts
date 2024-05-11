@@ -11,7 +11,7 @@ import { IncomingHttpHeaders } from "http";
 const app = express();
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://the-cv-builder.vercel.app");
+  res.setHeader("Access-Control-Allow-Origin", process.env.ALLOWED_ORIGIN!);
   res.header("Access-Control-Allow-Headers", "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version");
   res.header("Access-Control-Allow-Credentials", "true");
   next();
@@ -19,26 +19,31 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: process.env.ALLOWED_ORIGINS?.split(" "),
+    origin: process.env.ALLOWED_ORIGIN,
     credentials: true,
   })
 );
 app.use(cookieParser());
 app.use(express.json({ limit: "50mb" }));
 
-routes(app);
 
 
-const initializeApp = async () => {
-  try {
-    await connectDB();
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-};
+//SERVERLESS
+// routes(app);
 
-initializeApp();
+// const initializeApp = async () => {
+//   try {
+//     await connectDB();
+//   } catch (error) {
+//     console.log(error);
+//     process.exit(1);
+//   }
+// };
+
+// initializeApp();
+
+// export default app;
+//SERVERLESS
 
 // app.use((req, res, next) => {
 //   const startTime = Date.now();
@@ -80,15 +85,16 @@ initializeApp();
 //   next();
 // });
 
-// app.listen(process.env.PORT, async () => {
-//   try {
-//     await connectDB();
-//     routes(app);
-//     console.log(`Server Running on ${process.env.PORT}`);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
 
+//SERVER
+app.listen(process.env.PORT, async () => {
+  try {
+    await connectDB();
+    routes(app);
+    console.log(`Server Running on ${process.env.PORT}`);
+  } catch (error) {
+    console.log(error);
+  }
+});
+//SERVER
 
-export default app;
